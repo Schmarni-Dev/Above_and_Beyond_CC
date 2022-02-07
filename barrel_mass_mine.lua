@@ -19,25 +19,17 @@ local function D()
 end
 local function L()
     print("Turning Left")
-    turtle.digDown()
     turtle.turnLeft()
-    turtle.digUp()
     turtle.dig()
     turtle.forward()
-    turtle.digDown()
     turtle.turnLeft()
-    turtle.digUp()
     h = 1
 end
 local function R()
     print("Turning Right")
-    turtle.digDown()
-    turtle.digUp()
     turtle.turnRight()
     turtle.dig()
     turtle.forward()
-    turtle.digDown()
-    turtle.digUp()
     turtle.turnRight()
     h = 0
 end
@@ -51,7 +43,8 @@ local function B()
             break
         end
     end
-    turtle.select(1)
+    turtle.select(BS)
+    turtle.placeUp()
     for i = 1, 16, 1 do
         turtle.select(i)
         if i == BS then
@@ -64,7 +57,6 @@ local function B()
 end
 
 local function main()
-    print("test")
     -- wb = width blocks
     for wb = 1, w, 1 do
         -- db = depth blocks
@@ -80,5 +72,5 @@ local function main()
     end
 end
 
-print("pls")
+print("")
 main()
