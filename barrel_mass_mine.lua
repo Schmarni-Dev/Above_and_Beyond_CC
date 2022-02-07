@@ -3,6 +3,7 @@ local d = tonumber(io.read())
 print("Width?")
 local w = tonumber(io.read())
 local h = 1
+local du = true --dig up
 
 print("mining for", d, "blocks depth")
 print("mining for", w, "blocks width")
@@ -14,8 +15,11 @@ turtle.select(1)
 local function D()
     turtle.dig()
     turtle.digDown()
-    turtle.digUp()
+    if du then
+        turtle.digUp()
+    end
     turtle.forward()
+    du = true
 end
 local function L()
     print("Turning Left")
@@ -62,6 +66,7 @@ local function B()
         end
     end
     turtle.select(1)
+    du = false
 end
 
 local function main()
