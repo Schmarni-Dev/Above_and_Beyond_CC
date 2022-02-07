@@ -19,17 +19,25 @@ local function D()
 end
 local function L()
     print("Turning Left")
+    turtle.digDown()
+    urtle.digUp()
     turtle.turnLeft()
     turtle.dig()
     turtle.forward()
+    turtle.digDown()
+    urtle.digUp()
     turtle.turnLeft()
     h = 1
 end
 local function R()
     print("Turning Right")
+    turtle.digDown()
+    urtle.digUp()
     turtle.turnRight()
     turtle.dig()
     turtle.forward()
+    turtle.digDown()
+    urtle.digUp()
     turtle.turnRight()
     h = 0
 end
