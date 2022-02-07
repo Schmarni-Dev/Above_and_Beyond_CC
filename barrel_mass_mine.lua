@@ -64,6 +64,7 @@ local function B()
 end
 
 local function main()
+    print("test")
     -- wb = width blocks
     for wb = 1, w, 1 do
         -- db = depth blocks
