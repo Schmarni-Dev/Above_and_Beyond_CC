@@ -80,4 +80,5 @@ local function main()
     end
 end
 
+print("pls")
 main()
