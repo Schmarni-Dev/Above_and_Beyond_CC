@@ -6,3 +6,5 @@ local inputs = {s ={
 }}
 
 print(textutils.serialise(inputs["s"]))
+fs.delete("updater.lua")
+print("Done")
