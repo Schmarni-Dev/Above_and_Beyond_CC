@@ -10,7 +10,7 @@ if tArgs == nil then
     print("error please supply args")
     return
 end
-
+print(tArgs)
 print(textutils.serialise(inputs["s"]))
 fs.delete("updater.lua")
 print("Done")
