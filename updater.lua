@@ -1,8 +1,8 @@
 local inputs = {s ={
-    repo = "",
-    user = "",
-    file = "",
-    branch = ""
+    repo = "Above_and_Beyond_CC",
+    user = "Schmarni-Dev",
+    file = "updater.lua",
+    branch = "main"
 }}
 
-print(inputs["s"])
+print(textutils.serialise(inputs["s"]))
