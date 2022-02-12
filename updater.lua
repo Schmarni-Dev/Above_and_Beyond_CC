@@ -8,7 +8,7 @@ local inputs = {s ={
 }}
 
 local function isValid(input)
-    for k, v in pairs(t) do
+    for k, v in pairs(Vinputs) do
         print(v)
     end
 end
