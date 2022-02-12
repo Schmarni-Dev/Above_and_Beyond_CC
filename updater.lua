@@ -1,5 +1,5 @@
 local tArgs = { ... }
-local Vinputs = {}
+local Vinputs = {"a","b","x","y"}
 local inputs = {s ={
     repo = "Above_and_Beyond_CC",
     user = "Schmarni-Dev",
@@ -20,6 +20,7 @@ local function main(value)
 end
 
 print("Error: please supply valid args")
+isValid("CUM")
 
 if tArgs[1] == "S" then
     main("s")
