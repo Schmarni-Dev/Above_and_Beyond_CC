@@ -38,9 +38,10 @@ local function SelfUpdate(value, args)
     local t = inputs[value]
     local fPath = shell.resolve(t["file"])
     fs.delete(fPath)
-    git.getFile(t["file"], t["branch"], t["user"], t["repo"])
-    print("Done")
-    shell.run(t["file " .. args .. " self"])
+    if git.getFile(t["file"], t["branch"], t["user"], t["repo"]) then
+        print("Done")
+        shell.run(t["file " .. args .. " self"])
+    end
 end
 
 if tArgs[2] ~= "self" then
