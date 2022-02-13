@@ -1,3 +1,4 @@
+print("Running Updater")
 local git = require("github")
 local tArgs = {...}
 local Vinputs = {"hello"}
