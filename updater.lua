@@ -1,25 +1,45 @@
 print("Running Updater")
 local git = require("github")
 local tArgs = {...}
-local Vinputs = {"hello"}
+local configPath = "config/updater.json"
 local inputs = {
-    hello = {
+    example = {
         repo = "Above_and_Beyond_CC",
         user = "Schmarni-Dev",
         file = "printHelloWorld.lua",
         branch = "main"
     },
-    _self = {
-        repo = "Above_and_Beyond_CC",
+    git = {
+        repo = "CC_Programms",
         user = "Schmarni-Dev",
-        file = "updater.lua",
+        file = "github.lua",
         branch = "main"
-    }
+    },
 }
 
+local function printInput()
+    print("Inputs:")
+    print("1: Valid preset name")
+    print("presets can be edited at "..configPath)
+end
+
+local function readJson(path)
+    local f = fs.open(path, "r")
+    local diskjson = textutils.unserialiseJSON(f.readAll())
+    f.close()
+    return diskjson
+end
+
 local function isValid(input)
-    for k, v in pairs(Vinputs) do
-        if v == input then
+    if fs.exists(configPath) then
+        inputs = readJson(configPath)
+    else
+        local f =fs.open(configPath,"w")
+        f.write(textutils.serialiseJSON(inputs))
+    end
+
+    for k, v in pairs(inputs) do
+        if k == input then
             return true
         end
     end
@@ -35,20 +55,12 @@ local function Update(value)
     shell.run(t["file"])
 end
 
-local function SelfUpdate(value, args)
-    local t = inputs[value]
-    local fPath = shell.resolve(t["file"])
-    fs.delete(fPath)
-    if git.getFile(t["file"], t["branch"], t["user"], t["repo"]) then
-        print("Done")
-        shell.run(t["file " .. args .. " self"])
+if tArgs then
+    if isValid(tArgs[1]) then
+        Update(tArgs[1])
+    else
+        print("Error: please supply valid args")
     end
-end
-
-if tArgs[2] ~= "self" then
-    SelfUpdate("_self", tArgs[1])
-elseif isValid(tArgs[1]) then
-    Update(tArgs[1])
 else
-    print("Error: please supply valid args")
+    print(printInput)
 end
