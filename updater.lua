@@ -1,5 +1,5 @@
 print("Running Updater")
-local git = require("github")
+local githubRef = require("github")
 local tArgs = {...}
 local configPath = "config/updater.json"
 local inputs = {
@@ -50,7 +50,7 @@ local function Update(value)
     local t = inputs[value]
     local fPath = shell.resolve(t["file"])
     fs.delete(fPath)
-    git.getFile(t["file"], t["branch"], t["user"], t["repo"])
+    githubRef.getFile(t["file"], t["branch"], t["user"], t["repo"])
     print("Done")
     if tArgs[2] == "true" then 
         shell.run(t["file"])
