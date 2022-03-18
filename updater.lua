@@ -35,7 +35,7 @@ local function isValid(input)
         inputs = readJson(configPath)
     else
         local f =fs.open(configPath,"w")
-        f.write(textutils.serialiseJSON(inputs))
+        f.write(textutils.serialiseJSON(inputs):gsub(",",",\n"))
     end
 
     for k, v in pairs(inputs) do
