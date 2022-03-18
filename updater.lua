@@ -52,7 +52,9 @@ local function Update(value)
     fs.delete(fPath)
     git.getFile(t["file"], t["branch"], t["user"], t["repo"])
     print("Done")
-    shell.run(t["file"])
+    if tArgs[2] == "true" then 
+        shell.run(t["file"])
+    end
 end
 
 if tArgs then
