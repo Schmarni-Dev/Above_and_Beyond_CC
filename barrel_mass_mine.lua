@@ -2,9 +2,16 @@ print("Depth?")
 local d = tonumber(io.read())
 print("Width?")
 local w = tonumber(io.read())
+print("height?")
+local test = tonumber(io.read())
 local h = 1
 local du = true --dig up
-
+local function move()
+    if not turtle.forward() then
+        turtle.dig()
+        move()
+    end
+end
 print("mining for", d, "blocks depth")
 print("mining for", w, "blocks width")
 print("walking for", w * d, "blocks")
@@ -18,7 +25,7 @@ local function D()
     if du then
         turtle.digUp()
     end
-    turtle.forward()
+    move()
     du = true
 end
 local function L()
@@ -27,7 +34,7 @@ local function L()
     turtle.digUp()
     turtle.turnLeft()
     turtle.dig()
-    turtle.forward()
+    move()
     turtle.digDown()
     turtle.digUp()
     turtle.turnLeft()
@@ -39,7 +46,7 @@ local function R()
     turtle.digUp()
     turtle.turnRight()
     turtle.dig()
-    turtle.forward()
+    move()
     turtle.digDown()
     turtle.digUp()
     turtle.turnRight()
@@ -68,20 +75,33 @@ local function B()
     turtle.select(1)
     du = false
 end
-
+local start = 1
 local function main()
-    -- wb = width blocks
-    for wb = 1, w, 1 do
-        -- db = depth blocks
-        for db = 1, d, 1 do
-            D()
+    for hl = 1, test, 1 do
+        -- wb = width blocks
+        for wb = 1, w, 1 do
+            if start == 0 then
+                if h == 1 then
+                    R()
+                else
+                    L()
+                    B()
+                end
+            end
+            start = 0
+            -- db = depth blocks
+            for db = 1, d, 1 do
+                D()
+            end
         end
-        if h == 1 then
-            R()
-        else
-            L()
-            B()
-        end
+
+        turtle.digUp()
+        turtle.up()
+        turtle.digUp()
+        turtle.up()
+        turtle.digUp()
+        turtle.up()
+        h = 1 - h
     end
 end
 
