@@ -88,8 +88,9 @@ local function place_barrel()
     turtle.placeUp()
     for i = 1, 16, 1 do
         turtle.select(i)
-        if i == barrel_slot then
-            print("oh")
+        local item_detail = turtle.getItemDetail()
+        if item_detail ~= nil and item_detail.name == "minecraft:barrel" then
+            print("not dumping barrels")
         else
             turtle.dropUp()
         end
@@ -98,14 +99,10 @@ local function place_barrel()
     just_placed_barrel = true
 end
 local function main()
-    -- local first_loop = true
     for height_layer = 1, height_input, 1 do
         for width_block = 1, width_input, 1 do
             for depth_blocks = 1, depth_input, 1 do
-                -- if not first_loop then
                 dig_forward()
-                -- end
-                -- first_loop = false
             end
             if width_block == width_input then
                 break
